@@ -14,6 +14,23 @@
     <a href="https://www.reddit.com/r/davia_ai/" alt="Reddit">
         <img src="https://img.shields.io/reddit/subreddit-subscribers/davia_ai?style=social&label=r/davia_ai" /></a>
 </p>
+## Enhance
+
+**Optional OpenAI Configuration:**
+
+If you're using OpenAI, you can also configure:
+
+- `OPENAI_API_BASE` - Custom OpenAI API base URL (e.g., for using OpenAI-compatible APIs or proxies)
+- `MODEL` - Custom model name (e.g., `gpt-4`, `gpt-3.5-turbo`, defaults to `gpt-5`)
+
+Example `.env` file:
+
+```env
+OPENAI_API_KEY=your_api_key_here
+OPENAI_API_BASE=https://api.openai.com/v1  # Optional: custom API base URL
+MODEL=gpt-4  # Optional: custom model name
+```
+
 
 ## What is Davia?
 
@@ -40,6 +57,7 @@ By default, Davia looks for a **`.env` file** in the root of the project path yo
 1. Rename `.env.example` to `.env`
 2. Add your AI provider API key (we recommend **Anthropic** for best results)
 3. Davia will use the first available key in this order: Anthropic → OpenAI → Google
+
 
 ### 3. Run Docs
 
