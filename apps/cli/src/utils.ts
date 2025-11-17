@@ -50,6 +50,26 @@ export function checkAndSetAiEnv(
       const envContent = readFileSync(envPath, "utf-8");
       const parsed = parse(envContent);
 
+      // Set OPENAI_API_BASE/OPENAI_BASE_URL and MODEL if they exist (for OpenAI provider)
+      // Support both OPENAI_API_BASE and OPENAI_BASE_URL for compatibility
+      if (parsed.OPENAI_API_BASE && parsed.OPENAI_API_BASE.trim()) {
+        const baseUrl = parsed.OPENAI_API_BASE.trim();
+        process.env.OPENAI_API_BASE = baseUrl;
+        // langchain uses OPENAI_BASE_URL environment variable
+        process.env.OPENAI_BASE_URL = baseUrl;
+        console.log(`Using custom OpenAI API base URL: ${baseUrl}`);
+      } else if (parsed.OPENAI_BASE_URL && parsed.OPENAI_BASE_URL.trim()) {
+        const baseUrl = parsed.OPENAI_BASE_URL.trim();
+        process.env.OPENAI_API_BASE = baseUrl;
+        process.env.OPENAI_BASE_URL = baseUrl;
+        console.log(`Using custom OpenAI API base URL: ${baseUrl}`);
+      }
+      if (parsed.MODEL && parsed.MODEL.trim()) {
+        const model = parsed.MODEL.trim();
+        process.env.MODEL = model;
+        console.log(`Using custom model: ${model}`);
+      }
+
       // Check keys in priority order
       for (const { key, model } of apiKeys) {
         const value = parsed[key];

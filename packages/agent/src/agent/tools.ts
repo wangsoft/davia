@@ -93,12 +93,35 @@ function resolveFilePath(filePath: string, destinationPath: string): string {
 }
 
 /**
+ * Clean Mermaid content by removing code block markers
+ * @param content - Raw Mermaid content that may include code block markers
+ * @returns Cleaned Mermaid diagram definition
+ */
+function cleanMermaidContent(content: string): string {
+  // Remove code block markers (```mermaid, ```, etc.)
+  let cleaned = content.trim();
+  
+  // Remove opening code block markers (```mermaid, ```, etc.)
+  cleaned = cleaned.replace(/^```\s*mermaid\s*\n?/i, "");
+  cleaned = cleaned.replace(/^```\s*\n?/, "");
+  
+  // Remove closing code block markers
+  cleaned = cleaned.replace(/\n?```\s*$/, "");
+  cleaned = cleaned.replace(/```\s*$/, "");
+  
+  return cleaned.trim();
+}
+
+/**
  * Parse Mermaid diagram to Excalidraw using Puppeteer headless browser
  * This is the same approach used by mermaid-cli for reliable rendering
- * @param mermaidContent - Mermaid diagram definition
+ * @param mermaidContent - Mermaid diagram definition (may include code block markers)
  * @returns Excalidraw elements and files
  */
 async function parseMermaidWithPuppeteer(mermaidContent: string) {
+  // Clean the content to remove code block markers
+  const cleanedContent = cleanMermaidContent(mermaidContent);
+  
   const browser = await puppeteer.launch({
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -126,7 +149,7 @@ async function parseMermaidWithPuppeteer(mermaidContent: string) {
 
         return { elements: excalidrawElements, files };
       },
-      mermaidContent
+      cleanedContent
     );
 
     return result;

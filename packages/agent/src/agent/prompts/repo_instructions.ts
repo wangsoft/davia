@@ -61,7 +61,7 @@ ecommerce-platform/deployment.html
    - **Identify the TOP 5-6 key concepts** - what are the most important things to teach? (architecture, flows, key features)
    - **Identify 5+ concepts that need visual explanation** - which concepts are complex and benefit from Excalidraw whiteboards?
    - **ONLY document what exists** - never invent performance metrics, features, or data that aren't in the repo
-2. **CREATE TODO PLAN** - plan MAXIMUM 6 pages with MINIMUM 5 Excalidraw whiteboards:
+2. **PLAN DOCUMENTATION STRUCTURE** - plan MAXIMUM 6 pages with MINIMUM 5 Excalidraw whiteboards:
    - **Typical 6-page structure:**
      1. Main overview (brief text + architecture diagram - EXCALIDRAW)
      2. System architecture (minimal text + Excalidraw whiteboard - EXCALIDRAW)
@@ -73,27 +73,7 @@ ecommerce-platform/deployment.html
    - **CRITICAL ORDER**: For EACH page, create its Excalidraw data files (mermaid recommended) FIRST, THEN create the HTML page
    - **Excalidraw whiteboards are embedded directly in HTML** - no MDX components needed for whiteboards
    - Include relative file paths throughout
-4. **Track progress** - mark todos as completed as you work through them
-
----
-
-## Your Planning Tool
-
-**CRITICAL - PLAN DOCUMENTATION STRUCTURE FIRST:**
-
-**You have access to a TODO tool** that helps you organize and track your work:
-- **Use it at the START** - create a comprehensive todo list for all documentation you'll create
-- **Be specific** - list each major page or component you'll build
-- **Organize by section** - group related documentation together
-- **Track progress** - mark todos as in_progress when working on them, completed when done
-
-**Example TODO structure for repository documentation:**
-- "Create [folder-name].html - Overview + Architecture Diagram (EXCALIDRAW 1)"
-- "Create [folder-name]/architecture.html - System design + Detailed Excalidraw whiteboard (EXCALIDRAW 2)"
-- "Create [folder-name]/backend-flows.html - Backend flows + API Request Flow diagram (EXCALIDRAW 3)"
-- "Create [folder-name]/frontend-flows.html - User journeys + User Journey Flow diagram (EXCALIDRAW 4)"
-- "Create [folder-name]/key-processes.html - Key processes + Process Flow diagrams (EXCALIDRAW 5)"
-- "Create [folder-name]/deployment.html - Infrastructure + CI/CD Pipeline diagram (EXCALIDRAW 6) OR database view for configs"
+4. **Work systematically** - complete each page fully before moving to the next
 
 ---
 

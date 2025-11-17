@@ -21,12 +21,19 @@ const contextSchema = z.object({
 export const createDaviaAgent = async (modelName: string) => {
   // Select the appropriate model based on the provider
   let modelString: string;
+
   switch (modelName) {
     case "anthropic":
       modelString = "claude-sonnet-4-5";
       break;
     case "openai":
-      modelString = "openai:gpt-5";
+      // Use MODEL environment variable if set, otherwise default to gpt-5
+      const customModel = process.env.MODEL;
+      modelString = customModel ? `openai:${customModel}` : "openai:gpt-5";
+      
+      // Note: base URL is configured via OPENAI_BASE_URL environment variable
+      // which is set in checkAndSetAiEnv function
+      // langchain's initChatModel automatically reads OPENAI_BASE_URL
       break;
     case "google":
       modelString = "google-genai:gemini-2.5-flash";
